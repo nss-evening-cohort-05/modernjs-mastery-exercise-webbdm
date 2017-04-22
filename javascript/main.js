@@ -76,11 +76,10 @@ $(document).ready(function() {
             let charString = "";
             charString += `<div class="col-md-3">
 	    					   <div class="thumbnail">
+	    					   		<h3>${hero.name}</h3>
 		    					   	<img src=${hero.image} alt="...">
 	      							<div class="caption">
-		        						<h3>${hero.name}</h3>
-		        						<p>text</p>
-		        						<p>text</p>
+		        						<p>${hero.description}</p>
 	      							</div>
 	    					   </div>
     					   </div>`;
