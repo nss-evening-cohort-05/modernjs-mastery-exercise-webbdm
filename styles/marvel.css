@@ -8,7 +8,7 @@ body {
 }
 
 .navbar {
-    height: 75px;
+    height: 85px;
     background-color: #000000;
     border-color: #000000;
 }
@@ -17,6 +17,10 @@ body {
     display: block;
     margin: 0 auto;
     width: 50%;
+}
+
+.btn {
+	margin: 22px 10px 0px 10px ;
 }
 
 .thumbnail {
@@ -34,4 +38,13 @@ body {
 	background-color: #f78f3f;
 	padding: 5px;
 	margin: 0px 0px 15px 0px;
+}
+
+.thumbnail p {
+	color: #e23636;
+}
+
+.Female img{
+	border: 5px solid pink;
+
 }
