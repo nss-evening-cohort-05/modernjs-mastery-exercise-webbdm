@@ -65,13 +65,42 @@ $(document).ready(function() {
     };
 
     const writeDOM = (charArray) => {
-    	//console.log(charArray, "test");
+        //console.log(charArray, "test");
+        let teamString = "";
+        let teamRow = "";
+        let counter = 0;
+        teamString += `<div class="row">`;
+        charArray.forEach(function(hero) {
+            //console.log(hero.name);
 
-    	let charString = "";
+            let charString = "";
+            charString += `<div class="col-md-3">
+	    					   <div class="thumbnail">
+		    					   	<img src=${hero.image} alt="...">
+	      							<div class="caption">
+		        						<h3>${hero.name}</h3>
+		        						<p>text</p>
+		        						<p>text</p>
+	      							</div>
+	    					   </div>
+    					   </div>`;
+    		counter += 1;
+    		teamRow += charString;
+            //teamString += charString;
 
-    	charArray.forEach(function(hero){
-    		console.log(hero.name);
-    	})
+            if (counter % 4 === 0) { // Cap the row every 4 heroes 
+	            teamRow += `</div>`;
+	            teamString += teamRow;
+	            teamRow = "";
+	            teamRow += `<div class="row">`;
+        	} else if (counter === charArray.length) { // Add the closing tag to a row here if it's the last car in the array
+	            teamRow += `</div>`;
+	            teamString += teamRow;
+        	}	
+
+        })
+
+        $("#team").html(teamString);
     };
 
 
