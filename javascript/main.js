@@ -28,7 +28,7 @@ $(document).ready(function() {
         });
     };
 
-    const dataCall = (path) => { // Creates a new Promise with each filepath
+    const dataCall = (path) => { // Creates a new Promise with any filepath
         return new Promise((resolve, reject) => {
             $.ajax(path)
                 .done((data1) => {
