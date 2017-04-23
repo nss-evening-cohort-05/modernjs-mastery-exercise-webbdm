@@ -2,7 +2,7 @@
 
 ## Modern JavaScript Developer Milestone Challenge 
 
-![Marvel](https://github.com/nss-evening-cohort-05/spa-milestone-challenge-webbdm/blob/challenge/img/Swift.png)
+![Marvel](https://raw.githubusercontent.com/nss-evening-cohort-05/modernjs-mastery-exercise-webbdm/marvel/images/marvelScreenshot.png)
 
 ## Goal
 The goal for this Milestone Challenge was to create an application that will load character bios of various Marvel teams
