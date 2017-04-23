@@ -13,7 +13,7 @@ $(document).ready(function() {
     $.ajax("./db/teams.json").done((data1) => {
         makeButtons(data1.teams);
     }).fail((error) => {
-        reject(error);
+        console.log(error);
     });
 
     const makeButtons = (teams) => { // Dynamically create the team buttons from teams.json
@@ -107,7 +107,6 @@ $(document).ready(function() {
     const dataGetter = (clickedBtn) => {
         Promise.all([dataCall(teamsFile), dataCall(gendersFile), dataCall(charFile)])
             .then((result) => {
-                console.log(result);
                 charArray = result[2].characters;
                 gendersArray = result[1].genders;
                 teamsArray = result[0].teams;
