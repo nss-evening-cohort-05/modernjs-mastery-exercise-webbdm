@@ -1,20 +1,25 @@
 $(document).ready(function() {
 
+    //Global variables for incoming JSON daata
     let charArray;
     let gendersArray;
     let teamsArray;
 
-    $.ajax("./db/teams.json").done((data1) => {
-            makeButtons(data1.teams);
-        }).fail((error) => {
-            reject(error);
-        });
+    // Db filepaths for JSON
+    const charFile = "./db/characters.json";
+    const gendersFile = "./db/genders.json";
+    const teamsFile = "./db/teams.json";
 
-    const makeButtons = (teams) => {
-    	teams.forEach((team,index)=>{
-    		console.log(team.name);
-    		$("#btnDIV").append(`<button type="button" class="btn btn-primary" id="${index}">${team.name}</button>`);
-    	});
+    $.ajax("./db/teams.json").done((data1) => {
+        makeButtons(data1.teams);
+    }).fail((error) => {
+        reject(error);
+    });
+
+    const makeButtons = (teams) => { // Dynamically create the team buttons from teams.json
+        teams.forEach((team, index) => {
+            $("#btnDIV").append(`<button type="button" class="btn btn-primary" id="${index}">${team.name}</button>`);
+        });
 
         $('.btn').click((event) => {
             let clickedBtn = $(event.currentTarget);
@@ -23,35 +28,11 @@ $(document).ready(function() {
         });
     };
 
-    const loadCharacters = () => {
+    const dataCall = (path) => { // Creates a new Promise with each filepath
         return new Promise((resolve, reject) => {
-            $.ajax("./db/characters.json")
+            $.ajax(path)
                 .done((data1) => {
-                    resolve(data1.characters);
-                })
-                .fail((error) => {
-                    reject(error);
-                });
-        });
-    };
-
-    const loadGenders = () => {
-        return new Promise((resolve, reject) => {
-            $.ajax("./db/genders.json")
-                .done((data1) => {
-                    resolve(data1.genders);
-                })
-                .fail((error) => {
-                    reject(error);
-                });
-        });
-    };
-
-    const loadTeams = () => {
-        return new Promise((resolve, reject) => {
-            $.ajax("./db/teams.json")
-                .done((data1) => {
-                    resolve(data1.teams);
+                    resolve(data1);
                 })
                 .fail((error) => {
                     reject(error);
@@ -74,19 +55,20 @@ $(document).ready(function() {
         return charToPrint;
     };
 
+    // Write the returned character/hero array from sorter function to the DOM
     const writeDOM = (charArray) => {
         let teamString = "";
         let teamRow = "";
         let counter = 0;
         teamString += `<div class="row">`;
 
-        charArray.forEach((hero) => { // Adds a .gender key/value pair to every hero
+        charArray.forEach((hero) => { // Adds a .gender key/value pair to every hero 
             gendersArray.forEach((gender) => {
                 if (hero.gender_id == gender.id) {
                     hero.gender = gender.type;
                 }
 
-                if (hero.gender == "Male" && hero.description === "") { // Adds default bio based on gender if descrption was blank
+                if (hero.gender == "Male" && hero.description === "") { // Adds default bio based on gender if description was blank
                     hero.description = "1234567890";
                 } else if (hero.gender == "Female" && hero.description === "") {
                     hero.description = "abcde fghij klmno pqrst uvwxy z";
@@ -123,11 +105,12 @@ $(document).ready(function() {
     };
 
     const dataGetter = (clickedBtn) => {
-        Promise.all([loadTeams(), loadGenders(), loadCharacters()])
+        Promise.all([dataCall(teamsFile), dataCall(gendersFile), dataCall(charFile)])
             .then((result) => {
-                charArray = result[2];
-                gendersArray = result[1];
-                teamsArray = result[0];
+                console.log(result);
+                charArray = result[2].characters;
+                gendersArray = result[1].genders;
+                teamsArray = result[0].teams;
                 writeDOM(sorter(clickedBtn)); // Calls writeDOM with the team array the sorter function generated
             })
             .catch((error) => {
