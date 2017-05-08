@@ -1,0 +1,51 @@
+body {
+    background-color: #504a4a;
+}
+
+.navbar-brand img {
+    height: 50px;
+    width: auto;
+}
+
+.navbar {
+    height: 85px;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.big-logo {
+    display: block;
+    margin: 15% auto;
+    width: 50%;
+
+}
+
+.btn {
+	margin: 25px 10px 0px 10px ;
+}
+
+.thumbnail {
+	background-color: #504a4a;
+	text-align: center;
+	padding: 0px;
+}
+
+.thumbnail img {
+	border-radius: 100px;
+	border: 5px solid #518cca;
+}
+
+.thumbnail h3 {
+	background-color: #f78f3f;
+	padding: 5px;
+	margin: 0px 0px 15px 0px;
+}
+
+.thumbnail p {
+	color: #e23636;
+}
+
+.Female img{
+	border: 5px solid pink;
+
+}
